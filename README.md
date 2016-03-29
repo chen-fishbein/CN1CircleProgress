@@ -1,5 +1,5 @@
 # CN1CircleProgress
-Circle Progress Library for Codename One apps
+Circle Progress Library for [Codename One](https://github.com/codenameone/CodenameOne) apps
 inspired from https://github.com/lzyzsd/CircleProgress
 
 ![alt tag](https://github.com/chen-fishbein/CN1CircleProgress/blob/master/image1.png)
