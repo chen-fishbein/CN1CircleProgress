@@ -42,7 +42,8 @@ public class CircleProgress extends Slider {
     private boolean clockwise = false;
     
     private int startAngle = START_12_OCLOCK;
-    
+    private int maxValue = 100;
+
     public static final int START_12_OCLOCK = 0;
 
     public static final int START_3_OCLOCK = 1;
@@ -50,23 +51,28 @@ public class CircleProgress extends Slider {
     public static final int START_6_OCLOCK = 2;
 
     public static final int START_9_OCLOCK = 3;
-    
+
     public CircleProgress() {
         setRenderPercentageOnTop(true);
     }
-    
+
     public void setArcWidth(int arcWidth){
         this.arcWidth = arcWidth;
     }
-    
+
     public void setClockwise(boolean clockwise){
         this.clockwise = clockwise;
     }
-
     public void setStartAngle(int startAngle) {
         this.startAngle = startAngle;
     }
-    
+
+
+    @Override
+    public void setMaxValue(int maxValue) {
+        super.setMaxValue(maxValue);
+        this.maxValue = maxValue;
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -107,9 +113,9 @@ public class CircleProgress extends Slider {
                 break;                
         }
         if(clockwise){
-            path1.arc(x, y, size, size, angle, -(Math.PI*2)*p/100);                
+            path1.arc(x, y, size, size, angle, -(Math.PI*2)*p/maxValue);
         }else{
-            path1.arc(x, y, size, size, angle, (Math.PI*2)*p/100);        
+            path1.arc(x, y, size, size, angle, (Math.PI*2)*p/maxValue);
         }
         g.setColor(getStyle().getFgColor());
         g.drawShape(path1, stroke1);        
