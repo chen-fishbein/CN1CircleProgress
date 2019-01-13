@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CodenameOne">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../cn1-side-drawer/lib/CodenameOne.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

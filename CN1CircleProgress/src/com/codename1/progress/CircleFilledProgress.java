@@ -36,10 +36,10 @@ import com.codename1.ui.plaf.Style;
  *
  * @author Chen
  */
-public class CircleFilledProgress extends Slider{
+public class CircleFilledProgress extends BaseRoundProgress{
 
     private int textColor = 0;
-    
+
     public CircleFilledProgress() {
         setRenderPercentageOnTop(true);
     }
@@ -47,7 +47,7 @@ public class CircleFilledProgress extends Slider{
     public void setTextColor(int textColor) {
         this.textColor = textColor;
     }
-    
+
     @Override
     public void paint(Graphics g) {
         Style style = getStyle();
@@ -60,7 +60,7 @@ public class CircleFilledProgress extends Slider{
         if(style.getAlignment() == CENTER){
             x = getX() + (getWidth() - size)/2;
         }else if(style.getAlignment() == RIGHT){
-            x = getX() + getWidth() - (style.getPadding(isRTL(), Component.RIGHT));           
+            x = getX() + getWidth() - (style.getPadding(isRTL(), Component.RIGHT));
         }
 
         path.arc(x, y, size, size, 0, 2*Math.PI);
@@ -73,7 +73,7 @@ public class CircleFilledProgress extends Slider{
         g.setColor(getStyle().getFgColor());
         int h = (getHeight() * p) /getMaxValue();
         g.fillRect(x, y + getHeight() - h, size, h);
-        
+
         if(isRenderPercentageOnTop()){
             String val = formattedValue(p);
             g.setFont(style.getFont());
@@ -81,20 +81,6 @@ public class CircleFilledProgress extends Slider{
             g.drawString(val, x + (size - style.getFont().stringWidth(val))/2, y + (size - style.getFont().getHeight())/2);
         }
         g.resetAffine();
-    }
-
-    public void paintComponentBackground(Graphics g) {
-    }
-
-    @Override
-    protected Dimension calcPreferredSize() {
-        Style style = getStyle();
-        int prefW = Display.getInstance().getDisplayWidth() * 30 / 100, prefH = prefW;
-
-        prefH += (style.getPadding(false, Component.TOP) + style.getPadding(false, Component.BOTTOM));
-        prefW += (style.getPadding(isRTL(), Component.RIGHT) + style.getPadding(isRTL(), Component.LEFT));
-
-        return new Dimension(prefW, prefH);
     }
 
 }
