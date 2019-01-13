@@ -71,7 +71,7 @@ public class CircleFilledProgress extends Slider{
         int p = getProgress();
 
         g.setColor(getStyle().getFgColor());
-        int h = (getHeight() * p) /100;
+        int h = (getHeight() * p) /getMaxValue();
         g.fillRect(x, y + getHeight() - h, size, h);
         
         if(isRenderPercentageOnTop()){

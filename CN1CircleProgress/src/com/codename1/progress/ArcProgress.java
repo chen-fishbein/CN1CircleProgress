@@ -40,7 +40,6 @@ import com.codename1.ui.plaf.Style;
 public class ArcProgress extends Slider{
 
     private int arcWidth = 10;
-    private int maxValue = 100;
 
     public ArcProgress() {
         setRenderPercentageOnTop(true);
@@ -48,12 +47,6 @@ public class ArcProgress extends Slider{
 
     public void setArcWidth(int arcWidth) {
         this.arcWidth = arcWidth;
-    }
-
-    @Override
-    public void setMaxValue(int maxValue) {
-        super.setMaxValue(maxValue);
-        this.maxValue = maxValue;
     }
 
     @Override
@@ -78,7 +71,7 @@ public class ArcProgress extends Slider{
         g.drawShape(path, stroke1);
         int p = getProgress();
         GeneralPath path1 = new GeneralPath();
-        path1.arc(x, y, size, size, -Math.PI / 4 + (Math.PI * 6 / 4) * (maxValue - p) / maxValue, (Math.PI * 6 / 4) * p / maxValue);
+        path1.arc(x, y, size, size, -Math.PI / 4 + (Math.PI * 6 / 4) * (getMaxValue() - p) / getMaxValue(), (Math.PI * 6 / 4) * p / getMaxValue());
         g.setColor(getStyle().getFgColor());
         g.drawShape(path1, stroke1);
 
