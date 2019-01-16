@@ -37,7 +37,7 @@ import com.codename1.ui.plaf.Style;
  *
  * @author Chen
  */
-public class ArcProgress extends Slider{
+public class ArcProgress extends BaseRoundProgress{
 
     private int arcWidth = 10;
 
@@ -71,7 +71,7 @@ public class ArcProgress extends Slider{
         g.drawShape(path, stroke1);
         int p = getProgress();
         GeneralPath path1 = new GeneralPath();
-        path1.arc(x, y, size, size, -Math.PI / 4 + (Math.PI * 6 / 4) * (100 - p) / 100, (Math.PI * 6 / 4) * p / 100);
+        path1.arc(x, y, size, size, -Math.PI / 4 + (Math.PI * 6 / 4) * (getMaxValue() - p) / getMaxValue(), (Math.PI * 6 / 4) * p / getMaxValue());
         g.setColor(getStyle().getFgColor());
         g.drawShape(path1, stroke1);
 
@@ -82,18 +82,5 @@ public class ArcProgress extends Slider{
         }
     }
 
-    public void paintComponentBackground(Graphics g) {
-    }
-
-    @Override
-    protected Dimension calcPreferredSize() {
-        Style style = getStyle();
-        int prefW = Display.getInstance().getDisplayWidth() * 30 / 100, prefH = prefW;
-
-        prefH += (style.getPadding(false, Component.TOP) + style.getPadding(false, Component.BOTTOM));
-        prefW += (style.getPadding(isRTL(), Component.RIGHT) + style.getPadding(isRTL(), Component.LEFT));
-
-        return new Dimension(prefW, prefH);
-    }
 
 }

@@ -35,14 +35,14 @@ import com.codename1.ui.plaf.Style;
  *
  * @author Chen
  */
-public class CircleProgress extends Slider {
+public class CircleProgress extends BaseRoundProgress {
 
     private int arcWidth = 10;
     
     private boolean clockwise = false;
     
     private int startAngle = START_12_OCLOCK;
-    
+
     public static final int START_12_OCLOCK = 0;
 
     public static final int START_3_OCLOCK = 1;
@@ -50,23 +50,21 @@ public class CircleProgress extends Slider {
     public static final int START_6_OCLOCK = 2;
 
     public static final int START_9_OCLOCK = 3;
-    
+
     public CircleProgress() {
         setRenderPercentageOnTop(true);
     }
-    
+
     public void setArcWidth(int arcWidth){
         this.arcWidth = arcWidth;
     }
-    
+
     public void setClockwise(boolean clockwise){
         this.clockwise = clockwise;
     }
-
     public void setStartAngle(int startAngle) {
         this.startAngle = startAngle;
     }
-    
 
     @Override
     public void paint(Graphics g) {
@@ -107,9 +105,9 @@ public class CircleProgress extends Slider {
                 break;                
         }
         if(clockwise){
-            path1.arc(x, y, size, size, angle, -(Math.PI*2)*p/100);                
+            path1.arc(x, y, size, size, angle, -(Math.PI*2)*p/getMaxValue());
         }else{
-            path1.arc(x, y, size, size, angle, (Math.PI*2)*p/100);        
+            path1.arc(x, y, size, size, angle, (Math.PI*2)*p/getMaxValue());
         }
         g.setColor(getStyle().getFgColor());
         g.drawShape(path1, stroke1);        
@@ -121,21 +119,5 @@ public class CircleProgress extends Slider {
         }
     }
 
-    public void paintComponentBackground(Graphics g) {
-    }
-
-    @Override
-    protected Dimension calcPreferredSize() {
-        Style style = getStyle();
-        int prefW = Display.getInstance().getDisplayWidth()*30/100, prefH = prefW;
-        
-        prefH += (style.getPadding(false, Component.TOP) + style.getPadding(false, Component.BOTTOM));
-        prefW += (style.getPadding(isRTL(), Component.RIGHT) + style.getPadding(isRTL(), Component.LEFT));
-        
-        return new Dimension(prefW, prefH);
-    }
-    
-    
-    
 
 }
